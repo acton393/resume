@@ -45,7 +45,7 @@
 \end{itemize}
 
 \section{\faUsers\ 工作经历}
-\datedsubsection{\textbf{杭州微米网络有限公司}\ 浙江杭州}{2015年7月 -- 2019年3月}
+\datedsubsection{\textbf{杭州微米网络有限公司}\ 上海}{2019年3月 -- 今}
 \role{资深开发工程师}\
 
 \subsubsection*{{拼多多客户端动态化项目乐高基础建设}}
@@ -55,6 +55,7 @@
     \item iOS 端框架搭建，负责动画，文字，图片，canvas，dom 等核心能力的建设以及性能优化
     \item 双端 Layout engine 优化接入
     \item 负责稳定性，可用性
+    \item 表达式标准函数库，Test 262 case(ECMAScript Test suit)支持
   \end{itemize}
 \end{onehalfspacing}
 \subitem
@@ -62,26 +63,65 @@
 \role{TypeScript}{运用乐高动态化能力落地业务}
 \begin{onehalfspacing}
   \begin{itemize}
-    \item 保持业务高效快速迭代，配合产品取数，AB实验新功能
-    \item
+    \item 设计后端数据驱动前端模板展示
+    \item 保持业务高效快速迭代
   \end{itemize}
 \end{onehalfspacing}
 
 
 \datedsubsection{\textbf{阿里巴巴中国有限公司}\ 浙江杭州}{2015年7月 -- 2019年3月}
-\role{高级无线开发工程师}\
+\role{资深开发工程师}\
+主要职责：原生渲染，JSCore 和 Native 通信优化，富交互能力的输出，双十一等大促活动稳定性和性能的保障。
+\datedsubsection{\textbf{Weex JavaScript 执行环境的沙盒隔离}\ {2018年1月--2018年4月}}\
+\role{职责: 项目 iOS 开发和方案设计,推动其他端参与，各个业务方的验收和回归}\
+\textit{项目背景:Weex很长一段时间都是各个业务方的页面逻辑都在一个 JS 环境中执行，后一个页面的渲染执行效果很大程度上受到上一个页面的影响。全局污染，js内存长期居高不下等问题都是由于共享执行环境上下文导致。}\
+\textit{解决方案: 为所有 Weex 运行的页面(实例)创建新的环境，在 SDK 初始化完成之后创建全局实例作为 manager, 业务页面的环境由 manager 来初始化和提供。}
+
+\begin{itemize}
+  \item js 报错能精确定位到页面。
+  \item 进出页面几次后内存居高不下的情况得到了控制，反复进出页面后持有的内存都能得到合理的释放。
+\end{itemize}
+
+
+\datedsubsection{\textbf{RecycleList 长列表组件项目}\ {2017年10月--2017年1月}}\
+\role{职责: 项目 iOS 开发和方案设计,推动其他端参与}\
+\textit{项目背景:使用 Weex 开发无限列表，随着用户无限的滑动，js 和 native 需要发生频繁的通信，进行动态的加载页面，虚拟 dom 和 native 端的 dom 进行同步，越来越多的内存被占用最终会 OOM 发生abort,这种场景 在低端机上发生的概率更大。对于电商类应用，无限列表这种场景应用很普遍。}\
+\textit{解决方案: 尝试在列表初始化的时候把初始化的数据、表达式和事件等一次性传递到 native 侧，js 端不再进行展开，减少虚拟 dom 对内存的占用，同时 native 侧永远只展开屏幕中保留的部分，实施懒加载的方式。如果在 iOS 上如果采用prefetch方案，iOS 会提前预加载组件，体验效果会更好。}
+
+采用 3000 个节点进行压力测试，关键性能数据如下
+\begin{itemize}
+  \item 页面加载首屏时间基本和之前列表组件数据持平
+  \item 下拉到底部占用的内存近似为原来的 1/2
+  \item 加载过程中峰值 CPU 为原来 1/5，滑动 CPU 与原来数据持平
+\end{itemize}
+
+\datedsubsection{\textbf{Weex 无障碍能力支持}\ {2017年6月--2017年8月}}\
+\role{职责: 无障碍能力支持方案设计}\
+\textit{Weex 采用绘制的方式较多，一些原生的无障碍的能力严重缺失，如果一个 app 重度依赖这种缺乏无障碍支持的动态化方案，对于一个有障碍的用户来讲，这个 app 基本不能再使用}
+
+\textit{参照 W3C Web 对于无障碍能力的支持设计，完成 iOS 无障碍支持的开发，同时推动 Android 也补齐对应缺失的能力，尽量向 web 端对齐，同时暴露原生的一些无障碍的能力}
+
+
+
+\datedsubsection{\textbf{Weex 文字组件渲染}\ {2017年1月--2017年4月}}\
+\role{职责: iOS 开发和方案设计,推动各个业务方的验收和回归}\
+\textit{项目背景: Weex 原有文字采用 textkit 来绘制，在 Weex 这种多线程的场景下会有比较高的概率发生 crash，crash堆栈都是在 textkit 中，使用 textkit 存在一些文字无法对齐的场景}
+
+textit{采用比textkit 更底层的方案coreText来绘制文字，获得组件的排版和布局之后，对于一行文字的行高和基线都可控，对于多线程绘制的地方尽量避免多个线程同时去读写一个对象}
 
 
 \datedsubsection{\textbf{腾讯(深圳)有限公司}\  深圳}{2014年6月 -- 2014年10月}
 \role{实习服务端开发工程师}\
+在 TEG 团队提供运维管理平台后端服务。
 
-\section{\faInfo\ 其他}
+
+\section{\faInfo\ 自我评价}
 % increase linespacing [parsep=0.5ex]
-\begin{itemize}[parsep=0.5ex]
-  \item 技术博客: http://blog.yours.me
-  \item GitHub: https://github.com/username
-  \item 语言: 英语 - 熟练(TOEFL xxx)
-\end{itemize}
+
+\textit{
+  性格开朗、思维活跃，待人真诚，做事有责任心、可靠，条理性、责任心强；易与人相处，对生活充满热情,任劳任怨,勤奋好学,敢挑重担，具有比较强的团队精神和协调能力，业余喜欢篮球、音乐，也会读书、了解时政、科技。
+}
+
 
 %% Reference
 %\newpage
